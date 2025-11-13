@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор жонглерских анимаций</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Генератор жонглерских анимаций</h1>
+
+        <div class="main-controls">
+            <div class="control-group pattern-group">
+                <label for="pattern">Паттерн (сайтсвоп):</label>
+                <input type="text" id="pattern" value="3">
+            </div>
+            <button id="generate-btn">Сгенерировать</button>
+        </div>
+
+        <div class="animation-container">
+            <iframe id="juggling-animation-iframe" width="600" height="550" src="" title="Анимация жонглирования"></iframe>
+        </div>
+
+        <div class="example-patterns">
+            <div class="pattern-category">
+                <h3>Асинхронные (Vanilla)</h3>
+                <div class="pattern-buttons">
+                    <button class="example-pattern-btn" data-pattern="3">3 (Каскад)</button>
+                    <button class="example-pattern-btn" data-pattern="441">441 (Коробка)</button>
+                    <button class="example-pattern-btn" data-pattern="51">51 (Душ)</button>
+                    <button class="example-pattern-btn" data-pattern="42">42 (Холд)</button>
+                    <button class="example-pattern-btn" data-pattern="531">531</button>
+                    <button class="example-pattern-btn" data-pattern="60">60</button>
+                    <button class="example-pattern-btn" data-pattern="55500">55500 (Флеш)</button>
+                    <button class="example-pattern-btn" data-pattern="75">75 (Полу-душ)</button>
+                </div>
+            </div>
+            <div class="pattern-category">
+                <h3>Синхронные</h3>
+                <div class="pattern-buttons">
+                    <button class="example-pattern-btn" data-pattern="(4,4)">(4,4) (Фонтан)</button>
+                    <button class="example-pattern-btn" data-pattern="(4x,4x)">(4x,4x)</button>
+                    <button class="example-pattern-btn" data-pattern="(4x,2x)">(4x,2x) (Душ)</button>
+                    <button class="example-pattern-btn" data-pattern="(4,2x)(2x,4)">(4,2x)(2x,4)</button>
+                    <button class="example-pattern-btn" data-pattern="(6,6)(6x,2x)">(6,6)(6x,2x)</button>
+                    <button class="example-pattern-btn" data-pattern="(6x,6x)(2x,2x)">(6x,6x)(2x,2x)</button>
+                    <button class="example-pattern-btn" data-pattern="(4,4)(4,0)">(4,4)(4,0)</button>
+                    <button class="example-pattern-btn" data-pattern="(4,2x)*">(4,2x)*</button>
+                </div>
+            </div>
+            <div class="pattern-category">
+                <h3>Мультиплекс</h3>
+                <div class="pattern-buttons">
+                    <button class="example-pattern-btn" data-pattern="24[54]">24[54]</button>
+                    <button class="example-pattern-btn" data-pattern="26[76]">26[76]</button>
+                    <button class="example-pattern-btn" data-pattern="(4,2)(2x,[44x])">(4,2)(2x,[44x])</button>
+                </div>
+            </div>
+            <div class="pattern-category">
+                <h3>Пассинг (несколько жонглеров)</h3>
+                <div class="pattern-buttons">
+                    <button class="example-pattern-btn" data-pattern="<3p|3p><3|3>">&lt;3p|3p&gt;&lt;3|3&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<3p|3p>">&lt;3p|3p&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<3|3>">&lt;3|3&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<3p2|3p1>">&lt;3p2|3p1&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<4p|3><2|3p>">&lt;4p|3&gt;&lt;2|3p&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<(4x,4xp)|(4x,4xp)>">&lt;(4x,4xp)|(4x,4xp)&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<3|3|3|3>">&lt;3|3|3|3&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<(2p3,4x)|(2xp3,4p1)|(2xp2,4xp2)>">&lt;(2p3,4x)|...&gt;</button>
+                    <button class="example-pattern-btn" data-pattern="<3p 3|3p 3>">&lt;3p 3|3p 3&gt; (Упрощенный)</button>
+                    <button class="example-pattern-btn" data-pattern="<2|3p><2p|3><[3p/2]|3p><3|3>">&lt;2|3p&gt;&lt;2p|3&gt;... (Мультиплекс)</button>
+                </div>
+            </div>
+             <div class="pattern-category">
+                <h3>Сложные / Специальные</h3>
+                <div class="pattern-buttons">
+                    <button class="example-pattern-btn" data-pattern="42T3">42T3 (Модификатор)</button>
+                    <button class="example-pattern-btn" data-pattern="(3^10)(531^2)">(3^10)(531^2) (Повтор)</button>
+                    <button class="example-pattern-btn" data-pattern="L75">L75 (С левой руки)</button>
+                    <button class="example-pattern-btn" data-pattern="R3R3xL3L3x">R3R3xL3L3x</button>
+                    <button class="example-pattern-btn" data-pattern="(0,5)!(5,0)!(0,5)!(1,0)!">(0,5)!(...) (Short-beat)</button>
+                    <button class="example-pattern-btn" data-pattern="41x(4x,3)">41x(4x,3) (Смешанный)</button>
+                    <button class="example-pattern-btn" data-pattern="<(2p3,4xBL)|(2xp3,4p1BL)|(2xp2,4xp2BL)>">&lt;...BL&gt; (Отскок)</button>
+                    <button class="example-pattern-btn" data-pattern="<R|L><4xp|3><3|4xp>">&lt;R|L&gt;... (Выбор руки)</button>
+                    <button class="example-pattern-btn" data-pattern="(4,5x)(4,1x)!(0,5x)!(4,0)!(0,1x)!">(4,5x)(4,1x)!... (Short-beat)</button>
+                    <button class="example-pattern-btn" data-pattern="55556x56x1x(6x,4)(4,6x)(6x,4)(5x,7)(6x,4)">55556x... (Длинный смешанный)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
