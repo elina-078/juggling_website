@@ -7,19 +7,11 @@ const initGenerator = () => {
     if (isGeneratorInitialized) return;
 
     const animationIframe = document.getElementById('juggling-animation-iframe');
-    const loadingOverlay = document.getElementById('generator-loading-overlay');
     const fullscreenBtn = document.getElementById('generator-fullscreen-btn');
 
     if (!animationIframe) return;
 
     isGeneratorInitialized = true;
-
-    // Hide loading screen once iframe finishes loading
-    animationIframe.addEventListener('load', () => {
-        if (loadingOverlay) {
-            loadingOverlay.classList.add('is-hidden');
-        }
-    });
 
     // Load clean URL without outdated/incompatible parameters
     if (animationIframe.src !== ANIMATION_URL) {
