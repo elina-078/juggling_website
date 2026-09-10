@@ -1,75 +1,68 @@
-// --- Element References for Generator ---
-const generateBtn = document.getElementById('generate-btn');
-const animationIframe = document.getElementById('juggling-animation-iframe');
-const patternInput = document.getElementById('pattern');
-const examplePatternBtns = document.querySelectorAll('.example-pattern-btn');
+// --- Juggling Lab Generator ---
+const ANIMATION_URL = 'https://jugglinglab.org/anim?pattern=3';
 
-// --- Generator Function ---
-    const generateAnimation = () => {
-        const pattern = patternInput.value;
-        if (!pattern) {
-            return;
-        }
+let isGeneratorInitialized = false;
 
-        let gifWidth = 600;
-        let gifHeight = 550;
-
-        // Check if on a mobile device
-        if (window.innerWidth < 768) {
-            gifWidth = 300;
-            gifHeight = 275;
-        }
-
-        const baseURL = 'https://jugglinglab.org/anim';
-        const params = new URLSearchParams({
-            pattern: pattern,
-            width: gifWidth,
-            height: gifHeight,
-            view: 'simple'
-        });
-
-        const animationURL = `${baseURL}?${params.toString()}`;
-        if (animationIframe.src !== animationURL) {
-            animationIframe.src = animationURL;
-        }
-    };
 const initGenerator = () => {
-    if (generateBtn) {
-        generateBtn.addEventListener('click', generateAnimation);
-    }
+    if (isGeneratorInitialized) return;
 
-    if (patternInput) {
-        patternInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                generateAnimation();
-            }
-        });
-    }
+    const animationIframe = document.getElementById('juggling-animation-iframe');
+    const loadingOverlay = document.getElementById('generator-loading-overlay');
+    const fullscreenBtn = document.getElementById('generator-fullscreen-btn');
 
-    examplePatternBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (patternInput) {
-                patternInput.value = btn.dataset.pattern;
-                generateAnimation();
-            }
-        });
+    if (!animationIframe) return;
+
+    isGeneratorInitialized = true;
+
+    // Hide loading screen once iframe finishes loading
+    animationIframe.addEventListener('load', () => {
+        if (loadingOverlay) {
+            loadingOverlay.classList.add('is-hidden');
+        }
     });
 
-    // --- Initial Load for Generator ---
-    generateAnimation();
-}
+    // Load clean URL without outdated/incompatible parameters
+    if (animationIframe.src !== ANIMATION_URL) {
+        animationIframe.src = ANIMATION_URL;
+    }
 
+    // Handle fullscreen toggle
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (animationIframe.requestFullscreen) {
+                animationIframe.requestFullscreen();
+            } else if (animationIframe.webkitRequestFullscreen) {
+                animationIframe.webkitRequestFullscreen();
+            } else if (animationIframe.mozRequestFullScreen) {
+                animationIframe.mozRequestFullScreen();
+            } else if (animationIframe.msRequestFullscreen) {
+                animationIframe.msRequestFullscreen();
+            } else {
+                window.open(ANIMATION_URL, '_blank');
+            }
+        });
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.cd-hero-slider');
-    if(!slider) return;
+    if (!slider) return;
+
+    const checkAndInit = () => {
+        const fifthPage = slider.children[4];
+        if (fifthPage && fifthPage.classList.contains('selected')) {
+            initGenerator();
+        }
+    };
+
+    // Check on initial load in case page 5 is open
+    checkAndInit();
+
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.attributeName === 'class') {
-                const fifthPage = slider.children[4];
-                if (fifthPage.classList.contains('selected')) {
-                    initGenerator();
-                }
+                checkAndInit();
             }
         });
     });
@@ -79,5 +72,4 @@ document.addEventListener('DOMContentLoaded', () => {
         subtree: true,
         attributeFilter: ['class']
     });
-
 });

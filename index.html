@@ -233,68 +233,53 @@ http://www.tooplate.com/view/2088-big-city
                                             </div>
                                             <div class="tm-bg-dark-blue text-xs-left tm-textbox tm-textbox-padding tm-white-header-body tm-white-border">
                                                 <p>Жонглирование описывается математической нотацией под названием <strong>сайтсвоп (siteswap)</strong>. Каждая цифра в паттерне обозначает высоту и время полёта броска. Это позволяет описывать и придумывать бесконечное количество трюков.</p>
-                                                <p>Используйте генератор ниже, чтобы визуализировать различные трюки. Введите паттерн сайтсвопа в поле или выберите один из примеров.</p>
                                                 
                                                 <div id="generator" class="generator-container">
-                                                    <div class="main-controls">
-                                                        <div class="control-group pattern-group">
-                                                            <label for="pattern">Паттерн (сайтсвоп):</label>
-                                                            <input type="text" id="pattern" value="3">
+                                                    <div class="generator-toolbar">
+                                                        <div class="generator-status">
+                                                            <span class="generator-status-dot"></span>
+                                                            <span class="generator-status-text">Интерактивный симулятор Juggling Lab</span>
                                                         </div>
-                                                        <button id="generate-btn">Сгенерировать</button>
+                                                        <div class="generator-actions">
+                                                            <button id="generator-fullscreen-btn" type="button" class="generator-toolbar-btn" title="На весь экран">
+                                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                                                                На весь экран
+                                                            </button>
+                                                            <a href="https://jugglinglab.org/anim?pattern=3" target="_blank" rel="noopener noreferrer" class="generator-toolbar-btn" title="Открыть в новой вкладке">
+                                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                                                В новой вкладке
+                                                            </a>
+                                                        </div>
                                                     </div>
-                            
+
                                                     <div class="animation-container">
-                                                        <iframe id="juggling-animation-iframe" src="" title="Анимация жонглирования"></iframe>
+                                                        <div id="generator-loading-overlay" class="generator-loading-overlay">
+                                                            <div class="generator-spinner"></div>
+                                                            <div class="generator-loading-text">Загрузка симулятора Juggling Lab...</div>
+                                                        </div>
+                                                        <iframe id="juggling-animation-iframe" src="" title="Анимация жонглирования" allow="fullscreen" allowfullscreen></iframe>
                                                     </div>
-                            
-                                                    <div class="example-patterns">
-                                                        <div class="pattern-category">
-                                                            <h3>Асинхронные (Vanilla)</h3>
-                                                            <div class="pattern-buttons">
-                                                                <button class="example-pattern-btn" data-pattern="3">3 (Каскад)</button>
-                                                                <button class="example-pattern-btn" data-pattern="441">441 (Коробка)</button>
-                                                                <button class="example-pattern-btn" data-pattern="51">51 (Душ)</button>
-                                                                <button class="example-pattern-btn" data-pattern="42">42 (Холд)</button>
-                                                                <button class="example-pattern-btn" data-pattern="531">531</button>
-                                                                <button class="example-pattern-btn" data-pattern="60">60</button>
-                                                                <button class="example-pattern-btn" data-pattern="55500">55500 (Флеш)</button>
-                                                                <button class="example-pattern-btn" data-pattern="75">75 (Полу-душ)</button>
+
+                                                    <div class="generator-quick-guide">
+                                                        <div class="guide-item">
+                                                            <span class="guide-icon">✏️</span>
+                                                            <div class="guide-content">
+                                                                <strong>Ввод сайтсвопа:</strong>
+                                                                <span>Иконка карандаша в боковом меню открывает ввод любого паттерна (Pattern Entry).</span>
                                                             </div>
                                                         </div>
-                                                        <div class="pattern-category">
-                                                            <h3>Синхронные</h3>
-                                                            <div class="pattern-buttons">
-                                                                <button class="example-pattern-btn" data-pattern="(4,4)">(4,4) (Фонтан)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(4x,4x)">(4x,4x)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(4x,2x)">(4x,2x) (Душ)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(4,2x)(2x,4)">(4,2x)(2x,4)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(6,6)(6x,2x)">(6,6)(6x,2x)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(6x,6x)(2x,2x)">(6x,6x)(2x,2x)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(4,4)(4,0)">(4,4)(4,0)</button>
-                                                                <button class="example-pattern-btn" data-pattern="(4,2x)*">(4,2x)*</button>
+                                                        <div class="guide-item">
+                                                            <span class="guide-icon">📋</span>
+                                                            <div class="guide-content">
+                                                                <strong>Каталог трюков:</strong>
+                                                                <span>Иконка списка открывает библиотеку готовых паттернов: каскады, души, мультиплексы и пассинг.</span>
                                                             </div>
                                                         </div>
-                                                        <div class="pattern-category">
-                                                            <h3>Мультиплекс</h3>
-                                                            <div class="pattern-buttons">
-                                                                <button class="example-pattern-btn" data-pattern="24[54]">24[54]</button>
-                            
-                                                                <button class="example-pattern-btn" data-pattern="26[76]">26[76]</button>
-                                                                <button class="example-pattern-btn" data-pattern="(4,2)(2x,[44x])">(4,2)(2x,[44x])</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pattern-category">
-                                                            <h3>Пассинг (несколько жонглеров)</h3>
-                                                            <div class="pattern-buttons">
-                                                                <button class="example-pattern-btn" data-pattern="<3p|3p><3|3>">&lt;3p|3p&gt;&lt;3|3&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<3p|3p>">&lt;3p|3p&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<3|3>">&lt;3|3&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<3p2|3p1>">&lt;3p2|3p1&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<4p|3><2|3p>">&lt;4p|3&gt;&lt;2|3p&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<(4x,4xp)|(4x,4xp)>">&lt;(4x,4xp)|(4x,4xp)&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<3|3|3|3>">&lt;3|3|3|3&gt;</button>
-                                                                <button class="example-pattern-btn" data-pattern="<(2p3,4x)|(2xp3,4p1)|(2xp2,4xp2)>">&lt;(2p3,4x)|(2xp3,4p1)|(2xp2,4xp2)&gt;</button>
+                                                        <div class="guide-item">
+                                                            <span class="guide-icon">⚙️</span>
+                                                            <div class="guide-content">
+                                                                <strong>Генератор:</strong>
+                                                                <span>Иконка гаечного ключа позволяет автоматически генерировать новые комбинации бросков.</span>
                                                             </div>
                                                         </div>
                                                     </div>
