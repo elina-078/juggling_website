@@ -25,6 +25,168 @@ http://www.tooplate.com/view/2088-big-city
     <link rel="stylesheet" href="css/tooplate-style.css">                                   
     <!-- Tooplate style -->
 
+    <style>
+        /* Generator section styles */
+        .generator-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .generator-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(22, 36, 58, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            padding: 10px 16px;
+        }
+        .generator-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .generator-status-text {
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            color: #ffffff !important;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+            line-height: 1.4 !important;
+        }
+        .generator-status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #3f97c9;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #3f97c9;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .generator-actions {
+            display: flex;
+            align-items: center;
+        }
+        .generator-fullscreen-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            background-color: #3f97c9 !important;
+            color: #ffffff !important;
+            border: 1px solid #ffffff !important;
+            padding: 8px 18px !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+            transition: all 0.25s ease !important;
+            outline: none !important;
+            -webkit-appearance: none !important;
+            appearance: none !important;
+            text-decoration: none !important;
+        }
+        .generator-fullscreen-btn:hover,
+        .generator-fullscreen-btn:focus {
+            background-color: #2475a3 !important;
+            border-color: #ffffff !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 14px rgba(63, 151, 201, 0.8) !important;
+            transform: translateY(-1px) !important;
+        }
+        .generator-fullscreen-btn:active {
+            transform: translateY(0) !important;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+        .generator-fullscreen-btn svg {
+            flex-shrink: 0;
+            stroke: #ffffff !important;
+        }
+        .generator-fullscreen-btn span {
+            color: #ffffff !important;
+        }
+        .animation-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            background: #0f1724;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 0 0 4px 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .animation-container iframe {
+            width: 100%;
+            height: 70vh;
+            min-height: 480px;
+            max-height: 620px;
+            display: block;
+            border: none;
+            background: #ffffff;
+        }
+        .generator-quick-guide {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .guide-item {
+            flex: 1 1 220px;
+            background: rgba(26, 45, 75, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #ffffff !important;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+            font-size: 15px !important;
+            line-height: 1.5 !important;
+        }
+        .guide-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .guide-content {
+            color: #ffffff !important;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+        }
+        .guide-content strong {
+            display: block;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            margin-bottom: 3px;
+            font-size: 15px !important;
+        }
+        .guide-content span {
+            color: #ffffff !important;
+            font-size: 15px !important;
+            font-weight: 400 !important;
+            opacity: 1 !important;
+        }
+        @media only screen and (max-width: 767px) {
+            .generator-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .generator-actions {
+                width: 100%;
+            }
+            .generator-fullscreen-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .animation-container iframe {
+                height: 420px;
+                min-height: 380px;
+            }
+        }
+    </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -241,9 +403,9 @@ http://www.tooplate.com/view/2088-big-city
                                                             <span class="generator-status-text">Интерактивный симулятор Juggling Lab</span>
                                                         </div>
                                                         <div class="generator-actions">
-                                                            <button id="generator-fullscreen-btn" type="button" class="generator-fullscreen-btn" title="Развернуть на весь экран">
-                                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                                                                <span>На весь экран</span>
+                                                            <button id="generator-fullscreen-btn" type="button" class="generator-fullscreen-btn" style="display:inline-flex;align-items:center;gap:8px;background-color:#3f97c9;color:#ffffff;border:1px solid #ffffff;padding:8px 18px;font-size:15px;font-weight:600;font-family:'Open Sans',Helvetica,Arial,sans-serif;border-radius:4px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.35);" title="Развернуть на весь экран">
+                                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke:#ffffff;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                                                                <span style="color:#ffffff;">На весь экран</span>
                                                             </button>
                                                         </div>
                                                     </div>
